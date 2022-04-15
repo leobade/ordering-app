@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react';
 import PizzaCard from './PizzaCard'
 
-const PizzaList = () => {
+const PizzaList = ({pizzaList}) => {
     return (
         <>
             <div className={styles.container}>
@@ -12,15 +12,9 @@ const PizzaList = () => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo repellendus earum ex consequuntur officiis obcaecati non qui aperiam hic, sequi quisquam dicta maiores vitae ab, cumque ratione sapiente maxime! Reprehenderit!
                 </p>
                 <div className={styles.wrapper}>
-
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
+                {pizzaList.map((pizza, i)=>(
+                    <PizzaCard key={pizza.id} pizza={pizza}/>
+                ))}
                 </div>
             </div>
         </>

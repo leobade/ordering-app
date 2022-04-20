@@ -64,6 +64,7 @@ align-items: center;
 
 .cart{
     position: relative;
+    cursor: pointer;
 }
 
 .counter{

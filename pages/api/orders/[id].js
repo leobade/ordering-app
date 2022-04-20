@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
     if (method === 'PUT') {
         try {
-            const order = await Orders.create(req.body)
+            const order = await Orders.findByIdAndUpdate(id, req.body, {new : true})
             res.status(201).json(order)
         } catch (err) {
             res.status(400).json(err)
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     }
     if (method === 'DELETE') {
         try {
-            const order = await Orders.create(req.body)
+            const order = await Orders.findOneAndDelete(id)
             res.status(201).json(order)
         } catch (err) {
             res.status(400).json(err)

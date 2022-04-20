@@ -1,8 +1,8 @@
 import styles from "../../styles/Order.module.css";
 import Image from "next/image";
 
-const Order = () => {
-  const status = 0;
+const Order = ({order}) => {
+  const status = order.status;
 
   const statusClass = (index) => {
     if (index - status < 1) return styles.done;
@@ -26,16 +26,16 @@ const Order = () => {
             <tbody>
             <tr className={styles.tr}>
               <td>
-                <span className={styles.id}>129837819237</span>
+                <span className={styles.id}>{order._id}</span>
               </td>
               <td>
-                <span className={styles.name}>John Doe</span>
+                  <span className={styles.name}>{order.customer}</span>
               </td>
               <td>
-                <span className={styles.address}>Elton st. 212-33 LA</span>
+                <span className={styles.address}>{order.address}</span>
               </td>
               <td>
-                <span className={styles.total}>$79.80</span>
+                <span className={styles.total}>${order.total}</span>
               </td>
             </tr>
             </tbody>

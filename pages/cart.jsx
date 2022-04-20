@@ -24,12 +24,12 @@ const Cart = () => {
 
   const createOrder = async (data) => {
     try {
-        const res = await axios.post('http://localhost:3000/api/order', data)
+        const res = await axios.post('http://localhost:3000/api/orders', data)
         console.info(res)
         if(res.status === 201){
           dispatch(reset())
           console.info('Eccodi')
-          router.push(`/orders/${res.data._id}`)
+          router.push(`/order/${res.data._id}`)
         }
     } catch (error) {
       console.log(error)
@@ -76,7 +76,7 @@ const Cart = () => {
                   </span>
                 </td>
                 <td>
-                  <span className={styles.price}>{product.price}</span>
+                  <span className={styles.price}>${product.price}</span>
                 </td>
                 <td>
                   <span className={styles.quantity}>{product.quantity}</span>
@@ -120,5 +120,12 @@ const Cart = () => {
     </div>
   );
 };
-
+export const getServerSideProps = async (params) => {
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`)
+  return {
+    props: {
+      order: res.data,
+    }
+  }
+}
 export default Cart;

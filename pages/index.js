@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import Featured from '../components/Featured'
 import PizzaList from '../components/PizzaList'
 
+const server = process.env.SERVER;
 
 export default function Home({ pizzaList }) {
   return (
@@ -23,7 +24,7 @@ export default function Home({ pizzaList }) {
 
 
 export const getServerSideProps = async () => {
-  const res = await axios.get('http://localhost:3000/api/products')
+  const res = await axios.get(`${server}/api/products`)
   return {
     props: {
       pizzaList: res.data,

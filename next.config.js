@@ -3,4 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+const env = {
+  SERVER: process.env.SERVER
+}
+module.exports = {nextConfig, env}

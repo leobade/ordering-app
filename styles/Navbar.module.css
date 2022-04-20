@@ -60,10 +60,12 @@ align-items: center;
 .listItem{
     margin: 2rem;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .cart{
     position: relative;
+    cursor: pointer;
 }
 
 .counter{

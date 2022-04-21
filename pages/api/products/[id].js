@@ -2,7 +2,9 @@ import dbConnect from "../../../util/mongo";
 import Products from "../../../models/Products";
 
 export default async function handler(req, res) {
-    const { method, query:{id} } = req;
+    const { method, query:{id}, cookies} = req;
+    const token = cookies.token;
+
     dbConnect()
     if (method === 'GET') {
         try {
@@ -14,6 +16,9 @@ export default async function handler(req, res) {
     }
     if (method === 'PUT') {
         try {
+            if (!token || token !== process.env.TOKEN) {
+                return res.status(400).json('No permission')
+            }
             const product = await Products.create(req.body)
             res.status(201).json(product)
         } catch (err) {
@@ -22,6 +27,9 @@ export default async function handler(req, res) {
     }
     if (method === 'DELETE') {
         try {
+            if (!token || token !== process.env.TOKEN) {
+                return res.status(400).json('No permission')
+            }
             const product = await Products.create(req.body)
             res.status(201).json(product)
         } catch (err) {

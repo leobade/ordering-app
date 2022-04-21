@@ -6,4 +6,7 @@ const nextConfig = {
 const env = {
   SERVER: process.env.SERVER
 }
-module.exports = {nextConfig, env}
+const images = {
+  domains: ["res.cloudinary.com"]
+}
+module.exports = {nextConfig, env, images}
